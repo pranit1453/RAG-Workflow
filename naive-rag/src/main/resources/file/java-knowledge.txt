@@ -1,0 +1,65 @@
+Java Technical Knowledge
+
+Core Java
+
+Java is a statically typed, object-oriented programming language. The main object-oriented principles are encapsulation, inheritance, polymorphism, and abstraction.
+
+The Java Collections Framework provides interfaces and implementations such as List, Set, Map, ArrayList, LinkedList, HashSet, TreeSet, HashMap, LinkedHashMap, and TreeMap.
+
+ArrayList provides fast random access using an index and is generally preferred when frequent reads are required. LinkedList is useful for specific insertion and removal scenarios but is not generally faster for arbitrary operations.
+
+HashMap stores key-value pairs and provides average constant-time complexity for get and put operations when hash distribution is good. HashMap allows one null key and multiple null values.
+
+Java exception handling uses try, catch, finally, throw, and throws. Checked exceptions are checked at compile time, while unchecked exceptions generally extend RuntimeException.
+
+Multithreading
+
+Java supports concurrent programming through Thread, Runnable, Callable, ExecutorService, Future, CompletableFuture, synchronized, volatile, Lock, Semaphore, CountDownLatch, CyclicBarrier, and other concurrency utilities.
+
+A Thread represents an execution path. Runnable represents a task that does not return a result, while Callable represents a task that can return a result and throw an exception.
+
+ExecutorService should generally be preferred over manually creating many threads because it provides thread-pool management.
+
+The synchronized keyword provides mutual exclusion and establishes memory visibility guarantees. A volatile variable guarantees visibility of writes between threads but does not make compound operations such as increment atomic.
+
+AtomicInteger and other classes from java.util.concurrent.atomic provide atomic operations without using traditional synchronized blocks for many use cases.
+
+CompletableFuture supports asynchronous and non-blocking programming. It can compose multiple asynchronous operations using methods such as thenApply, thenCompose, thenCombine, exceptionally, and handle.
+
+Advanced Java
+
+Java Streams provide a declarative way to process collections. Common operations include filter, map, flatMap, sorted, distinct, collect, reduce, and groupingBy.
+
+Generics provide compile-time type safety and reduce the need for explicit casts. Wildcards include ?, ? extends T, and ? super T.
+
+Reflection allows Java programs to inspect classes, methods, fields, constructors, and annotations at runtime.
+
+The Java Virtual Machine executes Java bytecode. Important JVM areas include the heap, stack, metaspace, program counter, and native method stack.
+
+Garbage collection automatically manages heap memory. Modern JVMs provide collectors such as G1 and ZGC.
+
+Spring Boot
+
+Spring Boot simplifies Spring application development through auto-configuration, starter dependencies, embedded servers, and production-ready features.
+
+Dependency injection allows objects to receive their dependencies rather than constructing them directly. Constructor injection is generally preferred because dependencies can be final and required dependencies are explicit.
+
+@Component, @Service, @Repository, and @Controller are stereotype annotations used to register Spring-managed components.
+
+@RestController is commonly used to create REST APIs. @GetMapping, @PostMapping, @PutMapping, and @DeleteMapping map HTTP requests to controller methods.
+
+Spring Boot configuration can be provided using application.properties or application.yml.
+
+Spring AI
+
+Spring AI provides abstractions for integrating AI models and vector stores into Spring applications.
+
+A typical RAG pipeline contains document ingestion, document reading, transformation, embedding generation, vector storage, retrieval, and prompt augmentation.
+
+Spring AI provides Document, DocumentReader, DocumentTransformer, VectorStore, EmbeddingModel, ChatModel, and related abstractions.
+
+TokenTextSplitter can divide large documents into smaller chunks before embedding. Chunk size should be selected according to the embedding model, document structure, and retrieval requirements.
+
+A RAG system retrieves relevant document chunks from a vector store and provides them as context to an LLM before generating the final answer.
+
+For production systems, document metadata such as source filename, document type, page number, section, and ingestion timestamp can be stored along with document chunks.

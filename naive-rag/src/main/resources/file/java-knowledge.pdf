@@ -1,0 +1,345 @@
+JAVA ENGINEERING REFERENCE
+Core Java, Multithreading, Advanced Java, Spring Boot and Spring AI
+
+==================================================
+1. CORE JAVA
+==================================================
+
+1.1 Object-Oriented Programming
+
+Java is an object-oriented programming language based on four major principles:
+
+1. Encapsulation
+2. Inheritance
+3. Polymorphism
+4. Abstraction
+
+Encapsulation protects object state by controlling access to fields through methods.
+
+Inheritance allows a class to reuse behavior from another class.
+
+Polymorphism allows the same interface or parent type to represent different implementations.
+
+Abstraction exposes essential behavior while hiding implementation details.
+
+1.2 Collections
+
+The Java Collections Framework provides data structures including:
+
+List:
+- ArrayList
+- LinkedList
+
+Set:
+- HashSet
+- LinkedHashSet
+- TreeSet
+
+Map:
+- HashMap
+- LinkedHashMap
+- TreeMap
+
+ArrayList provides efficient indexed access. HashMap provides average constant-time lookup for get and put operations when hash distribution is good.
+
+1.3 Exception Handling
+
+Java provides structured exception handling using:
+
+try
+catch
+finally
+throw
+throws
+
+Checked exceptions are verified by the compiler. RuntimeException and its subclasses are unchecked exceptions.
+
+==================================================
+2. MULTITHREADING
+==================================================
+
+2.1 Thread
+
+A Thread represents an independent execution path.
+
+Runnable represents a task without a return value.
+
+Callable represents a task that can return a value and throw an exception.
+
+2.2 ExecutorService
+
+ExecutorService manages a pool of worker threads.
+
+Example:
+
+ExecutorService executor = Executors.newFixedThreadPool(10);
+
+executor.submit(() -> {
+    System.out.println("Executing task");
+});
+
+executor.shutdown();
+
+Using ExecutorService is generally preferable to creating large numbers of threads manually.
+
+2.3 synchronized
+
+The synchronized keyword provides mutual exclusion.
+
+Only one thread can execute a synchronized section guarded by the same monitor at a time.
+
+Synchronization also provides memory visibility guarantees.
+
+2.4 volatile
+
+The volatile keyword guarantees visibility of changes between threads.
+
+However, volatile does not make compound operations atomic.
+
+For example:
+
+counter++;
+
+is not atomic even when counter is volatile.
+
+2.5 AtomicInteger
+
+AtomicInteger provides atomic operations such as incrementAndGet and compareAndSet.
+
+2.6 CompletableFuture
+
+CompletableFuture supports asynchronous programming.
+
+Important methods include:
+
+thenApply
+thenCompose
+thenCombine
+exceptionally
+handle
+
+thenCompose is useful when one asynchronous operation depends on the result of another asynchronous operation.
+
+==================================================
+3. ADVANCED JAVA
+==================================================
+
+3.1 Streams
+
+Streams provide a declarative approach to collection processing.
+
+Common operations include:
+
+filter
+map
+flatMap
+sorted
+distinct
+collect
+reduce
+
+Example:
+
+List<String> result = names.stream()
+        .filter(name -> name.startsWith("A"))
+        .map(String::toUpperCase)
+        .toList();
+
+3.2 Generics
+
+Generics provide compile-time type safety.
+
+Example:
+
+List<String> names = new ArrayList<>();
+
+The wildcard ? extends T is commonly used when reading from a producer.
+
+The wildcard ? super T is commonly used when writing to a consumer.
+
+3.3 Reflection
+
+Reflection allows a program to inspect classes, constructors, methods, fields, and annotations at runtime.
+
+Reflection is heavily used by frameworks such as Spring.
+
+3.4 JVM
+
+The JVM executes Java bytecode.
+
+Important runtime memory areas include:
+
+Heap
+Stack
+Metaspace
+Program Counter
+Native Method Stack
+
+Garbage collection automatically reclaims objects that are no longer reachable.
+
+==================================================
+4. SPRING BOOT
+==================================================
+
+4.1 Dependency Injection
+
+Dependency injection allows an object to receive dependencies from the Spring container.
+
+Constructor injection is generally preferred because required dependencies are explicit and can be final.
+
+Example:
+
+@Service
+public class OrderService {
+
+    private final OrderRepository repository;
+
+    public OrderService(OrderRepository repository) {
+        this.repository = repository;
+    }
+}
+
+4.2 Spring Components
+
+Common Spring stereotype annotations include:
+
+@Component
+@Service
+@Repository
+@Controller
+@RestController
+
+4.3 REST APIs
+
+Spring Boot supports REST APIs through annotations such as:
+
+@GetMapping
+@PostMapping
+@PutMapping
+@DeleteMapping
+
+Example:
+
+@RestController
+@RequestMapping("/api/orders")
+public class OrderController {
+
+    @GetMapping("/{id}")
+    public Order getOrder(@PathVariable Long id) {
+        return service.findById(id);
+    }
+}
+
+4.4 Configuration
+
+Spring Boot applications commonly use:
+
+application.properties
+
+or
+
+application.yml
+
+Configuration can also be bound to Java objects using @ConfigurationProperties.
+
+==================================================
+5. SPRING AI
+==================================================
+
+5.1 Retrieval Augmented Generation
+
+RAG stands for Retrieval Augmented Generation.
+
+A typical RAG pipeline contains:
+
+1. Document ingestion
+2. Document extraction
+3. Document transformation
+4. Text chunking
+5. Embedding generation
+6. Vector storage
+7. Similarity search
+8. Context construction
+9. LLM generation
+
+5.2 Spring AI Document
+
+Spring AI represents extracted content using the Document abstraction.
+
+A Document generally contains text content and metadata.
+
+Useful metadata can include:
+
+source
+fileName
+pageNumber
+documentType
+createdAt
+
+5.3 Document Processing
+
+A document ingestion pipeline can be modeled as:
+
+Extractor -> Transformer -> Loader
+
+The extractor reads the source file.
+
+The transformer converts and chunks the extracted documents.
+
+The loader persists the resulting documents or embeddings.
+
+5.4 TokenTextSplitter
+
+TokenTextSplitter can divide large documents into smaller chunks before embedding.
+
+A reasonable starting configuration for a general RAG application is approximately 800 tokens per chunk with a minimum chunk size around 350 characters.
+
+Chunk size should be evaluated against the embedding model, document structure, retrieval quality, and LLM context window.
+
+5.5 Vector Store
+
+A vector store stores embeddings and associated document metadata.
+
+During retrieval, a query is converted into an embedding and compared with stored vectors.
+
+The most relevant document chunks are retrieved and supplied as context to the language model.
+
+==================================================
+6. PRODUCTION DESIGN
+==================================================
+
+A production document ingestion system can use the following architecture:
+
+Controller
+    |
+    v
+Document Processing Service
+    |
+    v
+Format Processor
+    |
+    +---- PDF Processor
+    |
+    +---- JSON Processor
+    |
+    +---- TXT Processor
+    |
+    v
+Extractor
+    |
+    v
+Transformer
+    |
+    v
+Embedding
+    |
+    v
+Vector Store
+
+The processing sequence should remain consistent:
+
+Extract -> Transform -> Load
+
+Format-specific behavior should remain inside the corresponding processor or extractor.
+
+Common transformation and loading logic should be shared where possible.

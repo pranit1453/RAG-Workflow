@@ -1,0 +1,106 @@
+{
+  "title": "Java Technical Knowledge",
+  "categories": [
+    {
+      "name": "Core Java",
+      "topics": [
+        {
+          "title": "Object Oriented Programming",
+          "content": "Java is a statically typed, object-oriented programming language. The main object-oriented principles are encapsulation, inheritance, polymorphism, and abstraction."
+        },
+        {
+          "title": "Collections",
+          "content": "The Java Collections Framework provides interfaces and implementations such as List, Set, Map, ArrayList, LinkedList, HashSet, TreeSet, HashMap, LinkedHashMap, and TreeMap."
+        },
+        {
+          "title": "HashMap",
+          "content": "HashMap stores key-value pairs and provides average constant-time complexity for get and put operations when hash distribution is good. HashMap allows one null key and multiple null values."
+        },
+        {
+          "title": "Exception Handling",
+          "content": "Java exception handling uses try, catch, finally, throw, and throws. Checked exceptions are checked at compile time, while unchecked exceptions generally extend RuntimeException."
+        }
+      ]
+    },
+    {
+      "name": "Multithreading",
+      "topics": [
+        {
+          "title": "ExecutorService",
+          "content": "ExecutorService provides thread-pool management and is generally preferred over manually creating many threads."
+        },
+        {
+          "title": "Synchronization",
+          "content": "The synchronized keyword provides mutual exclusion and establishes memory visibility guarantees between threads."
+        },
+        {
+          "title": "Volatile",
+          "content": "A volatile variable guarantees visibility of writes between threads but does not make compound operations such as increment atomic."
+        },
+        {
+          "title": "CompletableFuture",
+          "content": "CompletableFuture supports asynchronous programming and can compose multiple asynchronous operations using thenApply, thenCompose, thenCombine, exceptionally, and handle."
+        }
+      ]
+    },
+    {
+      "name": "Advanced Java",
+      "topics": [
+        {
+          "title": "Streams",
+          "content": "Java Streams provide a declarative way to process collections. Common operations include filter, map, flatMap, sorted, distinct, collect, reduce, and groupingBy."
+        },
+        {
+          "title": "Generics",
+          "content": "Generics provide compile-time type safety and reduce the need for explicit casts. Wildcards include ?, ? extends T, and ? super T."
+        },
+        {
+          "title": "Reflection",
+          "content": "Reflection allows Java programs to inspect classes, methods, fields, constructors, and annotations at runtime."
+        },
+        {
+          "title": "JVM",
+          "content": "The Java Virtual Machine executes Java bytecode. Important JVM areas include the heap, stack, metaspace, program counter, and native method stack."
+        }
+      ]
+    },
+    {
+      "name": "Spring Boot",
+      "topics": [
+        {
+          "title": "Dependency Injection",
+          "content": "Dependency injection allows objects to receive their dependencies rather than constructing them directly. Constructor injection is generally preferred because dependencies can be final and required dependencies are explicit."
+        },
+        {
+          "title": "REST APIs",
+          "content": "Spring Boot provides annotations such as RestController, GetMapping, PostMapping, PutMapping, and DeleteMapping for building REST APIs."
+        },
+        {
+          "title": "Configuration",
+          "content": "Spring Boot configuration can be provided using application.properties or application.yml."
+        }
+      ]
+    },
+    {
+      "name": "Spring AI",
+      "topics": [
+        {
+          "title": "RAG",
+          "content": "A typical RAG pipeline contains document ingestion, document reading, transformation, embedding generation, vector storage, retrieval, and prompt augmentation."
+        },
+        {
+          "title": "Document",
+          "content": "Spring AI provides abstractions such as Document, DocumentReader, DocumentTransformer, VectorStore, EmbeddingModel, and ChatModel."
+        },
+        {
+          "title": "TokenTextSplitter",
+          "content": "TokenTextSplitter can divide large documents into smaller chunks before embedding. Chunk size should be selected according to the embedding model, document structure, and retrieval requirements."
+        },
+        {
+          "title": "Vector Store",
+          "content": "A RAG system retrieves relevant document chunks from a vector store and provides them as context to an LLM before generating the final answer."
+        }
+      ]
+    }
+  ]
+}

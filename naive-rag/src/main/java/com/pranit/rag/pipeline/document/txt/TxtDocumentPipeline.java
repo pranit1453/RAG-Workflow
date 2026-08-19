@@ -1,0 +1,31 @@
+package com.pranit.rag.pipeline.document.txt;
+
+import com.pranit.rag.entities.DocumentType;
+import com.pranit.rag.pipeline.document.DocumentPipeline;
+import com.pranit.rag.pipeline.etl.txt.TxtDocumentExtractor;
+import com.pranit.rag.pipeline.etl.txt.TxtDocumentLoader;
+import com.pranit.rag.pipeline.etl.txt.TxtDocumentTransformer;
+import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.Resource;
+import org.springframework.stereotype.Component;
+
+@Component
+@RequiredArgsConstructor
+public class TxtDocumentPipeline implements DocumentPipeline {
+
+    private final TxtDocumentExtractor extractor;
+    private final TxtDocumentTransformer transformer;
+    private final TxtDocumentLoader loader;
+
+    @Override
+    public DocumentType getFileType() {
+        return DocumentType.TXT;
+    }
+
+    @Override
+    public void process(final Resource resource) {
+        final var documents = extractor.extract(resource);
+        final var transformed = transformer.transform(documents);
+        loader.load(transformed);
+    }
+}

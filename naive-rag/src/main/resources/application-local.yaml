@@ -41,6 +41,11 @@ spring:
         model: nvidia/nemotron-3-ultra-550b-a55b
         temperature: 0.7
         max-tokens: 1000
+      embedding:
+        api-key: ${OPENAI_API_KEY}
+        base-url: https://integrate.api.nvidia.com/v1
+        model: nvidia/nemotron-3-embed-1b
+        dimensions: 2048
     vectorstore:
       qdrant:
         host: localhost
@@ -57,3 +62,10 @@ logging:
   level:
     root: INFO
     com.pranit.accesshub: DEBUG
+
+ai:
+  advisor:
+    safeguard:
+      blocked-words:
+        - games
+        - secret-key
