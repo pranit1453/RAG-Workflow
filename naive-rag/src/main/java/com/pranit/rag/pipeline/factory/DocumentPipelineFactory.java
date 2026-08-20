@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -23,13 +24,13 @@ public final class DocumentPipelineFactory {
                         Function.identity()));
     }
 
-    public void getPipeline(Resource resource) {
+    public long getPipeline(UUID documentId, Resource resource) {
         DocumentType type = getType(resource);
         DocumentPipeline pipeline = pipelines.get(type);
         if (pipeline == null) {
             throw new IllegalArgumentException("Unsupported file: " + resource.getFilename());
         }
-        pipeline.process(resource);
+        return pipeline.process(documentId, resource);
     }
 
     private DocumentType getType(Resource resource) {

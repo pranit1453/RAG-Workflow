@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Component
 @RequiredArgsConstructor
 public class TxtDocumentPipeline implements DocumentPipeline {
@@ -23,9 +25,10 @@ public class TxtDocumentPipeline implements DocumentPipeline {
     }
 
     @Override
-    public void process(final Resource resource) {
+    public long process(final UUID documentId, final Resource resource) {
         final var documents = extractor.extract(resource);
         final var transformed = transformer.transform(documents);
-        loader.load(transformed);
+        loader.load(documentId, transformed);
+        return transformed.size();
     }
 }

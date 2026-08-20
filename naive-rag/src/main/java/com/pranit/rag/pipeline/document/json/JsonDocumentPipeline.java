@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Component
 @RequiredArgsConstructor
 public class JsonDocumentPipeline implements DocumentPipeline {
@@ -23,19 +25,10 @@ public class JsonDocumentPipeline implements DocumentPipeline {
     }
 
     @Override
-    public void process(final Resource resource) {
-        IO.println("Processing file: " + resource.getFilename());
+    public long process(final UUID documentId, final Resource resource) {
         final var documents = extractor.extract(resource);
-        IO.println("After processing file: " + resource.getFilename());
-        IO.println("Chunks: " + documents.size());
-        documents.forEach(document -> IO.println("Document: " + document));
-        IO.println("----------------------------------------------------------------");
-        IO.println("Transforming file: " + resource.getFilename());
         final var transformed = transformer.transform(documents);
-        IO.println("After transforming file: " + resource.getFilename());
-        IO.println("Chunks: " + transformed.size());
-        transformed.forEach(document -> IO.println("Document: " + document));
-        IO.println("----------------------------------------------------------------");
-        //loader.load(transformed);
+        loader.load(documentId, transformed);
+        return transformed.size();
     }
 }
