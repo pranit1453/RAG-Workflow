@@ -1,6 +1,6 @@
 package com.pranit.rag.pipeline.document.txt;
 
-import com.pranit.rag.entities.DocumentType;
+import com.pranit.rag.entities.constant.DocumentType;
 import com.pranit.rag.pipeline.document.DocumentPipeline;
 import com.pranit.rag.pipeline.etl.txt.TxtDocumentExtractor;
 import com.pranit.rag.pipeline.etl.txt.TxtDocumentLoader;

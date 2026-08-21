@@ -5,6 +5,6 @@ import org.springframework.http.HttpStatus;
 
 public class DocumentProcessingException extends BaseException {
     public DocumentProcessingException(String message) {
-        super(message, HttpStatus.BAD_REQUEST);
+        super(message, HttpStatus.UNPROCESSABLE_CONTENT);
     }
 }

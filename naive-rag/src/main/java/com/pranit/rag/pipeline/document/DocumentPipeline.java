@@ -1,6 +1,6 @@
 package com.pranit.rag.pipeline.document;
 
-import com.pranit.rag.entities.DocumentType;
+import com.pranit.rag.entities.constant.DocumentType;
 import org.springframework.core.io.Resource;
 
 import java.util.UUID;

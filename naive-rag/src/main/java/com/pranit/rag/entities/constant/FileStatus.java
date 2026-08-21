@@ -1,4 +1,4 @@
-package com.pranit.rag.entities;
+package com.pranit.rag.entities.constant;
 
 public enum FileStatus {
     UPLOADING,

@@ -1,6 +1,6 @@
 package com.pranit.rag.pipeline.document.pdf;
 
-import com.pranit.rag.entities.DocumentType;
+import com.pranit.rag.entities.constant.DocumentType;
 import com.pranit.rag.pipeline.document.DocumentPipeline;
 import com.pranit.rag.pipeline.etl.pdf.PdfDocumentExtractor;
 import com.pranit.rag.pipeline.etl.pdf.PdfDocumentLoader;

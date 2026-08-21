@@ -1,6 +1,6 @@
 package com.pranit.rag.pipeline.factory;
 
-import com.pranit.rag.entities.DocumentType;
+import com.pranit.rag.entities.constant.DocumentType;
 import com.pranit.rag.pipeline.document.DocumentPipeline;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;

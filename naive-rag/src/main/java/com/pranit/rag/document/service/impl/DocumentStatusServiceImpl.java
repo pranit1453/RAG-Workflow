@@ -2,7 +2,7 @@ package com.pranit.rag.document.service.impl;
 
 import com.pranit.rag.document.repository.DocumentRepository;
 import com.pranit.rag.document.service.DocumentStatusService;
-import com.pranit.rag.entities.FileStatus;
+import com.pranit.rag.entities.constant.FileStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
