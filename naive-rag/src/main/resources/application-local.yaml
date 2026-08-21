@@ -63,7 +63,7 @@ logging:
   level:
     root: INFO
     com.pranit.accesshub: DEBUG
-
+# SafeGuard Configuration
 ai:
   advisor:
     safeguard:
@@ -76,3 +76,20 @@ ai:
         - private-key
         - client-secret
         - credentials
+# Actuator Configuration
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: never
+info:
+  app:
+    name: access-hub
+    description: "This is an RAG Service"
+    version: "1.0.0"
